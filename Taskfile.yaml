@@ -1,0 +1,25 @@
+version: '3'
+
+dotenv:
+- .env
+
+tasks:
+
+    default:
+        dir: packages
+        cmds: 
+        - nuv -wsk project deploy
+
+    clean:
+        dir: packages
+        cmds: 
+        - nuv -wsk project undeploy
+
+    setup: |
+      python -m venv venv
+      source venv/bin/activate
+      pip install ipython openai
+
+    cli: |
+        source venv/bin/activate
+        ipython -i init.ipy
